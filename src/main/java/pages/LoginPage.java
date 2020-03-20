@@ -45,7 +45,8 @@ public class LoginPage extends PageBase {
         PageBase.sendTxtToElement(loginPassword, password);
         PageBase.clickOnElement(loginButton);
     }
-    public void forgetYourPassword(String email) throws InterruptedException {
+    public void forgetYourPassword(String email) throws InterruptedException
+    {
         PageBase.clickOnElement(forgetYourPasswordLink);
         Thread.sleep(5000);
         PageBase.sendTxtToElement(recoveryEmailAddressTxtField, email);

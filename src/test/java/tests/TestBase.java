@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.MyAccountPage;
+import pages.ProductPage;
 import pages.UserRegistartionPage;
 
 public class TestBase {
@@ -15,6 +16,7 @@ public class TestBase {
     protected LoginPage loginPage;
     protected UserRegistartionPage userRegistrationPage;
     protected MyAccountPage myAccountPage;
+    protected ProductPage productPage;
 
     @BeforeSuite
     public void setUpBrowser()
