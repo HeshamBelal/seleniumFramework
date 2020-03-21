@@ -30,7 +30,7 @@ public class LoginPage extends PageBase {
     WebElement retrievePasswordButton;
 
 
-    public void openLoginAndRegistrationPAge()
+    public void openLoginAndRegistrationPage()
     {
         PageBase.clickOnElement(signInButton);
     }
