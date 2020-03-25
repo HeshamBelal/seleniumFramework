@@ -15,6 +15,16 @@ public class ShoppingCartPage extends PageBase{
     private WebElement myAccountButton;
     @FindBy(css="i.icon-home")
     private WebElement homePageButton;
+    @FindBy(id="total_price")
+    public WebElement totalPrice;
+    @FindBy(css = "i.icon-plus")
+    private WebElement incrementQuantityButton;
+    @FindBy(css="p.alert.alert-warning")
+    public WebElement shoppingCartEmptyMessage;
+    public void incrementProductQuantityInShoppingCart()
+    {
+        PageBase.clickOnElement(incrementQuantityButton);
+    }
     public void deleteProductFromCart()
     {
         PageBase.clickOnElement(DeleteProductFromCart);

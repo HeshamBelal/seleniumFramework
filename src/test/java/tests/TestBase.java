@@ -1,4 +1,5 @@
 package tests;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +21,10 @@ public class TestBase {
     protected MyAccountPage myAccountPage;
     protected ProductPage productPage;
     protected ShoppingCartPage shoppingCartPage;
+    protected WomenSectionPage womenSectionPage;
+    protected DressesSectionPage dressesSectionPage;
+    protected WishListPage wishListPage;
+    protected Alert alert;
     @BeforeSuite
     public void setUpBrowser()
     {

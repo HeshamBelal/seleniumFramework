@@ -12,15 +12,21 @@ public class ProductPage extends PageBase{
     public static WebElement productPageResultText;
     @FindBy(css = "button.exclusive")
     private WebElement addToCartButton;
-      @FindBy(id= "wishlist_button")
-      private WebElement addToWishListButton;
-      @FindBy(tagName = "h2")
-      public WebElement productAdditionToCartSuccessTextMessage;
-      @FindBy(id="layer_cart_product_price")
-      public WebElement totalPrice;
+    @FindBy(id= "wishlist_button")
+    private WebElement addToWishListButton;
+    @FindBy(tagName = "h1")
+    public static WebElement nameOfProduct;
+    @FindBy(tagName = "h2")
+    public WebElement productAdditionToCartSuccessTextMessage;
+    @FindBy(id="layer_cart_product_price")
+    public WebElement totalPrice;
     @FindBy(linkText = "Proceed to checkout")
     private WebElement proceedToCheckoutButton;
-      public void returnToMyAccountPage()
+    @FindBy(css = "span.continue.btn.btn-default.button.exclusive-medium")
+    private WebElement continueShoppingButton;
+    @FindBy(css = "a.fancybox-item.fancybox-close")
+    private WebElement closeAddedToWishListMessae;
+    public void navigateToMyAccountPage()
     {
         PageBase.clickOnElement(myAccountButton);
     }
@@ -28,12 +34,17 @@ public class ProductPage extends PageBase{
     {
         PageBase.clickOnElement(addToCartButton);
     }
-    public void addProductToWishList()
+    public void continueShopping()
     {
-        PageBase.clickOnElement(addToWishListButton);
+        PageBase.clickOnElement(continueShoppingButton);
     }
-    public void proceedToCheckout()
-    {
+    public void addProductToWishList() throws InterruptedException {
+        PageBase.clickOnElement(addToWishListButton);
+        Thread.sleep(2000);
+        PageBase.clickOnElement(closeAddedToWishListMessae);
+    }
+    public void proceedToCheckout() throws InterruptedException {
+        Thread.sleep(2000);
         PageBase.clickOnElement(proceedToCheckoutButton);
     }
 }

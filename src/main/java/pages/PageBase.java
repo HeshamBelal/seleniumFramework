@@ -25,6 +25,10 @@ public class PageBase {
     {
         element.sendKeys(text);
     }
+    public static void acceptAlertBox(WebDriver driver1)
+    {
+        driver1.switchTo().alert().accept();
+    }
     public static void scrollDownToBottom(WebDriver driver)
     {
 
