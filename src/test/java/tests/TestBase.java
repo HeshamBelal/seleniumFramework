@@ -1,14 +1,14 @@
 package tests;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 import pages.*;
 
 import java.io.File;
@@ -25,11 +25,20 @@ public class TestBase {
     protected DressesSectionPage dressesSectionPage;
     protected WishListPage wishListPage;
     protected Alert alert;
-    @BeforeSuite
-    public void setUpBrowser()
+    @BeforeClass
+    @Parameters({"browser"})
+    public void setUpBrowser(@Optional("fire")String browserName)
     {
-        System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"\\Drivers\\geckodriver.exe");
-        Driver=new FirefoxDriver();
+        if (browserName.equalsIgnoreCase("fire"))
+        {
+            System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"\\Drivers\\geckodriver.exe");
+            Driver=new FirefoxDriver();
+        }
+        else
+        {
+            System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"\\Drivers\\chromedriver.exe");
+            Driver=new ChromeDriver();
+        }
         Driver.manage().window().maximize();
         Driver.navigate().to("http://automationpractice.com/index.php");
     }
@@ -41,9 +50,9 @@ public class TestBase {
             FileHandler.copy(screenShotFile, new File(System.getProperty("user.dir")+"\\Screenshots\\"+iTestResult.getName()+".png"));
         }
     }
-    @AfterSuite
+    @AfterClass
     public void terminateBrowser()
     {
-       // Driver.close();
+        Driver.quit();
     }
 }

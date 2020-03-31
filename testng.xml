@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite"><test verbose="2" preserve-order="true" name="C:/Java Selenium Projects/seleniumFramework">
+    <parameter name="browser" value="fire"/>
+    <classes>
+        <class name="tests.LoginTest"/>
+        <class name="tests.SearchForProductTest"/>
+        <class name="tests.AddProductToWishListTest"/>
+        <class name="tests.AddProductToCartAndEditQuantityAndEmptyTheShoppingCart"/>
+        <class name="tests.AddProductToCartAndPurchase"/>
+    </classes>
+</test>
+</suite>

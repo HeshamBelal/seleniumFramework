@@ -21,6 +21,20 @@ public class ShoppingCartPage extends PageBase{
     private WebElement incrementQuantityButton;
     @FindBy(css="p.alert.alert-warning")
     public WebElement shoppingCartEmptyMessage;
+    @FindBy(linkText = "Proceed to checkout")
+    private WebElement proceedToCheckoutButton;
+    @FindBy(css = "button.button.btn.btn-default.button-medium")
+    private WebElement proceedToCheckoutButton2;
+    @FindBy(css = "button.button.btn.btn-default.button-medium")
+    private WebElement proceedToCheckoutButton3;
+    @FindBy(id="cgv")
+    private WebElement agreeToTermsOfServiceCheckBox;
+    @FindBy(css = "a.bankwire")
+    private WebElement payByBankWireButton;
+    @FindBy(css="button.button.btn.btn-default.button-medium")
+    private WebElement iConfirmMyOrderButton;
+    @FindBy(css = "p.cheque-indent")
+    public WebElement cartPurchaseCompleteMessage;
     public void incrementProductQuantityInShoppingCart()
     {
         PageBase.clickOnElement(incrementQuantityButton);
@@ -36,5 +50,13 @@ public class ShoppingCartPage extends PageBase{
     public void navigateToHomePage()
     {
         PageBase.clickOnElement(homePageButton);
+    }
+    public void proceedToCheckOut() throws InterruptedException {
+        PageBase.clickOnElement(proceedToCheckoutButton);
+        PageBase.clickOnElement(proceedToCheckoutButton2);
+        PageBase.clickOnElement(agreeToTermsOfServiceCheckBox);
+        PageBase.clickOnElement(proceedToCheckoutButton3);
+        PageBase.clickOnElement(payByBankWireButton);
+        PageBase.clickOnElement(iConfirmMyOrderButton);
     }
 }
