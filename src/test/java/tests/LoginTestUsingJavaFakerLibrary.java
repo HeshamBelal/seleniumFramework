@@ -1,41 +1,47 @@
 package tests;
-import data.JSONDataReader;
-import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import pages.LoginPage;
 import pages.MyAccountPage;
 import pages.UserRegistartionPage;
-
-import java.io.IOException;
-public class LoginTestUsingDDTFromJSON extends TestBase{
-    JSONDataReader jsonDataReader=new JSONDataReader();
+public class LoginTestUsingJavaFakerLibrary extends TestBase{
     @Test
-    public void loginSuite() throws InterruptedException, IOException, ParseException {
-        jsonDataReader.getDataFromJSONFile();
+    public void registerNewUser() throws InterruptedException {
         loginPage=new LoginPage(Driver);
-        loginPage.registerNewUser(jsonDataReader.email);
+        loginPage.registerNewUser("test9@hesham.com");
         Thread.sleep(3000);
         userRegistrationPage= new UserRegistartionPage(Driver);
-        userRegistrationPage.registerNewUser(jsonDataReader.firstName,jsonDataReader.lastName,jsonDataReader.password,jsonDataReader.company,jsonDataReader.city,jsonDataReader.postalCode,jsonDataReader.mobilePhone,jsonDataReader.address,jsonDataReader.addressAlias);
+        userRegistrationPage.registerNewUser("Hesham","Belal","p@ssw0rd","Mobi","Cali","90002","18332061405","12 hgo st.","home");
         myAccountPage=new MyAccountPage(Driver);
         Assert.assertTrue(myAccountPage.signOutButton.isDisplayed(),"User Registration is successful");
-
+    }
+    @Test(dependsOnMethods = {"registerNewUser"})
+    public void registeredUserCanLogOut()
+    {
         myAccountPage=new MyAccountPage(Driver);
         myAccountPage.logoutFromTheWebPAge();
         loginPage=new LoginPage(Driver);
         Assert.assertTrue(loginPage.createAnAccountButton.isDisplayed());
-
+    }
+    @Test(dependsOnMethods = {"registeredUserCanLogOut"})
+    public void registeredUserCanLogIn()
+    {
         loginPage=new LoginPage(Driver);
-        loginPage.loginAsRegisteredUser(jsonDataReader.email,jsonDataReader.password);
+        loginPage.loginAsRegisteredUser("test9@hesham.com","p@ssw0rd");
         Assert.assertTrue(myAccountPage.signOutButton.isDisplayed());
-
+    }
+    @Test(dependsOnMethods = {"registeredUserCanLogIn"})
+    public void userCanLogOut()
+    {
         loginPage=new LoginPage(Driver);
         loginPage.logout();
         Assert.assertTrue(loginPage.signInButton.isDisplayed());
-
+    }
+    @Test(dependsOnMethods = {"userCanLogOut"})
+    public void userCanRecoverHisPassword() throws InterruptedException {
         loginPage=new LoginPage(Driver);
-        loginPage.forgetYourPassword(jsonDataReader.email);
+        loginPage.forgetYourPassword("test9@hesham.com");
         Assert.assertTrue(loginPage.forgotYourPasswordSuccessMessage.getText().contains("A confirmation email has been sent to your address"));
     }
 }
