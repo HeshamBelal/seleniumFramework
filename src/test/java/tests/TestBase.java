@@ -1,6 +1,6 @@
 package tests;
 
-import io.cucumber.testng.AbstractTestNGCucumberTests;
+//import io.cucumber.testng.AbstractTestNGCucumberTests;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -15,7 +15,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class TestBase extends AbstractTestNGCucumberTests {
+public class TestBase { //extends AbstractTestNGCucumberTests
     public WebDriver Driver;
     protected LoginPage loginPage;
     protected UserRegistartionPage userRegistrationPage;
