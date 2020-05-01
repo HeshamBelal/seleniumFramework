@@ -8,7 +8,7 @@ public class LoginTest extends TestBase{
     @Test
     public void registerNewUser() throws InterruptedException {
         loginPage=new LoginPage(Driver);
-        loginPage.registerNewUser("test9@hesham.com");
+        loginPage.registerNewUser("test10@hesham.com");
         Thread.sleep(3000);
         userRegistrationPage= new UserRegistartionPage(Driver);
         userRegistrationPage.registerNewUser("Hesham","Belal","p@ssw0rd","Mobi","Cali","90002","18332061405","12 hgo st.","home");
